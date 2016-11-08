@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
         return res = 0;
       }
 
-      console.log(values);
       res += parseInt(values[i]);
     }
     return res;
