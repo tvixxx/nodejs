@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
   const result = sumNumbers(a, b);
   
+  // Вывод данных для наглядности
   res.json({
     url: url,
     result: result
