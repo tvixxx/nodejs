@@ -2,6 +2,7 @@ import express from 'express';
 
 const app = express();
 
+// Первый вариант решения задачи
 app.get('/', (req, res) => {
   const url = req.query;
   const {a, b} = url;
@@ -29,6 +30,22 @@ app.get('/', (req, res) => {
   const result = sumNumbers(a, b);
   
   // Вывод данных для наглядности
+  res.json({
+    url: url,
+    result: result
+  });
+});
+
+// Второй вариант решения задачи
+app.get('/', (req, res) => {
+  const url = req.query;
+  const {a, b} = url;
+
+  const sumNumbers = (...values) => { 
+    return values.reduce( (a, b) =>   (a ? +a : +!!a) +  (b ? +b : +!!b) ); 
+  };
+  const result = sumNumbers(a, b);
+  console.log(result);
   res.json({
     url: url,
     result: result
