@@ -3,8 +3,10 @@
 // Если какой-то параметр не передан или не конвертируется в число, он считается равных нулю (0).
 
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 
 // Первый вариант решения задачи
 app.get('/', (req, res) => {
@@ -44,13 +46,11 @@ app.get('/', (req, res) => {
   const url = req.query;
   const {a, b} = url;
 
-  const sumNumbers = (...values) => { 
-    return values.reduce( (a, b) =>   (a ? +a : +!!a) +  (b ? +b : +!!b) ); 
+  const sumNumbers = (...values) => {
+    return values.reduce( (a, b) =>   (a ? +a : +!!a) +  (b ? +b : +!!b) );
   };
   const result = sumNumbers(a, b);
-  console.log(result);
-  res.json({
-    url: url,
-    result: result
-  });
+
+  res.status(200).send((result).toString());
 });
+
